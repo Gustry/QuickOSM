@@ -205,6 +205,27 @@ QListWidget::item::selected {
               </layout>
              </item>
              <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_7">
+               <item>
+                <widget class="QPushButton" name="minus_button">
+                 <property name="text">
+                  <string>-</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="plus_button">
+                 <property name="text">
+                  <string>+</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="TableKeyValue" name="table_queries"/>
+             </item>
+             <item>
               <layout class="QFormLayout" name="formLayout">
                <property name="sizeConstraint">
                 <enum>QLayout::SetDefaultConstraint</enum>
@@ -1310,6 +1331,11 @@ QListWidget::item::selected {
    <extends>QFrame</extends>
    <header>qgis.gui</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TableKeyValue</class>
+   <extends>QTableView</extends>
+   <header>QuickOSM.ui.combobox_delegates</header>
   </customwidget>
  </customwidgets>
  <tabstops>

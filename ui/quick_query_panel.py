@@ -3,6 +3,7 @@
 from json import load
 from os.path import isfile
 
+from qgis.PyQt.QtGui import QStandardItemModel
 from qgis.PyQt.QtWidgets import QDialogButtonBox, QCompleter
 
 from .base_overpass_panel import BaseOverpassPanel
@@ -30,6 +31,7 @@ class QuickQueryPanel(BaseOverpassPanel):
         super().__init__(dialog)
         self.panel = Panels.QuickQuery
         self.osm_keys = None
+        self.queries_model = None
 
     def setup_panel(self):
         super().setup_panel()
@@ -86,6 +88,15 @@ class QuickQueryPanel(BaseOverpassPanel):
 
         self.query_type_updated()
         self.init_nominatim_autofill()
+
+        self.dialog.table_queries.set_osm_keys(self.osm_keys)
+        self.queries_model = QStandardItemModel(self.dialog.table_queries)
+        self.queries_model.setColumnCount(2)
+        self.queries_model.setRowCount(1)
+
+        headers = [tr('Key'), tr('Value')]
+        self.queries_model.setHorizontalHeaderLabels(headers)
+        self.dialog.table_queries.setModel(self.queries_model)
 
     def query_type_updated(self):
         self._core_query_type_updated(
